@@ -2,9 +2,14 @@
 #include <iostream> 
 
 float points[] = {
-  -0.5f, -0.5f,  0.0f,
+   0.0f, -0.5f,  0.0f,
    0.0f,  0.5f,  0.0f,
    0.5f, -0.5f,  0.0f
+};
+float points2[] = {
+   0.0f, -0.5f,  0.0f,
+   0.0f,  0.5f,  0.0f,
+   0.5f,  0.5f,  0.0f
 };
 
 const char* vertex_shader =
@@ -35,6 +40,7 @@ int main(int argc, char** argv)
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
+
 
 	// create vertex array
 	GLuint vao = 0;
