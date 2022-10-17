@@ -143,7 +143,9 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Build\Assets\Materials\box.mtrl" />
     <None Include="..\..\Build\Assets\Shaders\basic.frag" />
+    <None Include="..\..\Build\Assets\Shaders\basic.prog" />
     <None Include="..\..\Build\Assets\Shaders\basic.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
