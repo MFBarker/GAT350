@@ -13,38 +13,37 @@ namespace neu
 
     bool Program::Create(std::string filename, ...)
     {
-        // load program json document 
+        // load program json document
         rapidjson::Document document;
         bool success = neu::json::Load(filename, document);
         if (!success)
         {
-
             LOG("Could not load program file (%s).", filename.c_str());
             return false;
         }
 
-        // create program 
+        // create program
         m_program = glCreateProgram();
 
-        // get/add vertex shader 
+        // get/add vertex shader
         std::string vertex_shader;
         READ_DATA(document, vertex_shader);
         if (!vertex_shader.empty())
         {
-
             auto vshader = g_resources.Get<neu::Shader>(vertex_shader, GL_VERTEX_SHADER);
             AddShader(vshader);
         }
 
-        // get/add fragment shader 
+        // get/add fragment shader
         std::string fragment_shader;
         READ_DATA(document, fragment_shader);
         if (!fragment_shader.empty())
         {
-
             auto fshader = g_resources.Get<neu::Shader>(fragment_shader, (void*)GL_FRAGMENT_SHADER);
             AddShader(fshader);
         }
+
+        Link();
 
         return true;
     }
