@@ -21,7 +21,7 @@ namespace neu
 			{
 				iter = m_actors.erase(iter);
 			}
-			else 
+			else
 			{
 				iter++;
 			}
@@ -34,8 +34,8 @@ namespace neu
 		auto camera = GetActorFromName("Camera");
 		if (camera)
 		{
-			g_renderer.SetView(camera->GetComponent<CameraComponent>() -> GetView());
-			g_renderer.SetProjection(camera->GetComponent<CameraComponent>() -> GetProjection());
+			g_renderer.SetView(camera->GetComponent<CameraComponent>()->GetView());
+			g_renderer.SetProjection(camera->GetComponent<CameraComponent>()->GetProjection());
 		}
 
 		// draw actors 
@@ -113,7 +113,7 @@ namespace neu
 				}
 			}
 		}
-		
+
 
 		return true;
 	}
