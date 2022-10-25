@@ -80,8 +80,10 @@ int main(int argc, char** argv)
 	//program->Link();
 	//program->Use();
 
+	auto m = neu::g_resources.Get<neu::Model>("Models/spot.obj");
+	
 	// create material 
-	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("materials/box.mtrl");
+	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("Materials/box.mtrl");
 	material->Bind();
 
 	//material->GetProgram()->SetUniform("tint", glm::vec3(1, 0, 0));
@@ -92,8 +94,9 @@ int main(int argc, char** argv)
 	glm::vec3 cameraPosition = glm::vec3{ 0, 0, 2 };
 	float speed = 3;
 
+
 	std::vector<neu::Transform> transforms;
-	for (int i = 0; i<100; i++)
+	for (int i = 0; i<1; i++)
 	{
 		transforms.push_back({ {neu::randomf(-10,10), neu::randomf(-10,10), neu::randomf(-10,10)}, {neu::randomf(90), neu::randomf(90), neu::randomf(90)} });
 	}
@@ -133,8 +136,10 @@ int main(int argc, char** argv)
 			glm::mat4 mvp = projection * view * (glm::mat4) transforms[i];
 			material->GetProgram()->SetUniform("mvp", mvp);
 
-			vb->Draw();
+			m->m_vertexBuffer.Draw();
+			//vb->Draw();
 		}
+
 
 		neu::g_renderer.EndFrame();
 	}
