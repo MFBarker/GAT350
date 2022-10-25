@@ -62,6 +62,21 @@ int main(int argc, char** argv)
 
 	LOG("*-Window Initialized-*");
 
+	// load scene 
+	auto scene = std::make_unique<neu::Scene>();
+
+	rapidjson::Document document;
+	bool success = neu::json::Load("scenes/basic.scn", document);
+	if (!success)
+	{
+		LOG("error loading scene file %s.", "scenes/basic.scn");
+	}
+	else
+	{
+		scene->Read(document);
+		scene->Initialize();
+	}
+
 	// create vertex buffer
 	GLuint vbo = 0;
 	glGenBuffers(1, &vbo);
@@ -83,7 +98,7 @@ int main(int argc, char** argv)
 	auto m = neu::g_resources.Get<neu::Model>("Models/spot.obj");
 	
 	// create material 
-	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("Materials/box.mtrl");
+	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("Materials/spot.mtrl");
 	material->Bind();
 
 	//material->GetProgram()->SetUniform("tint", glm::vec3(1, 0, 0));
@@ -127,7 +142,11 @@ int main(int argc, char** argv)
 
 		//material->GetProgram()->SetUniform("scale", std::sin(neu::g_time.time * 3));
 
+		scene->Update();
+
 		neu::g_renderer.BeginFrame();
+
+		scene->Draw(neu::g_renderer);
 
 		for (size_t i = 0; i < transforms.size();i++)
 		{
@@ -143,7 +162,7 @@ int main(int argc, char** argv)
 
 		neu::g_renderer.EndFrame();
 	}
-
+	scene->RemoveAll();
 	neu::Engine::Instance().Shutdown();
 
 	return 0;

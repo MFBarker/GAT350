@@ -43,5 +43,11 @@ namespace neu
 
 			return { mxTranslation * mxRotation * mxScale };
 		}
+
+		//OpenGl Scene Assignment
+		glm::vec3 getRight() { return ((glm::mat4)(*this))[0]; }
+		glm::vec3 getUp() { return ((glm::mat4)(*this))[1]; }
+		glm::vec3 getForward() { return ((glm::mat4)(*this))[2]; }
+
 	};
 }

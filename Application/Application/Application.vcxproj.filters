@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\Materials">
+      <UniqueIdentifier>{649a9dd6-2523-4769-99d0-52d5606d04a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{a54ff792-d382-4df1-8341-58b43829bf88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Scenes">
+      <UniqueIdentifier>{914e8fd7-823b-4acd-8e36-1a511a3344c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -21,16 +30,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Build\Assets\Shaders\basic.frag">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\..\Build\Assets\Shaders\basic.vert">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="..\..\Build\Assets\Shaders\basic.prog">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\basic.vert">
+      <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="..\..\Build\Assets\Materials\box.mtrl">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\spot.mtrl">
+      <Filter>Resource Files\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Scenes\basic.scn">
+      <Filter>Resource Files\Scenes</Filter>
     </None>
   </ItemGroup>
 </Project>
