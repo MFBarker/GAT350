@@ -63,19 +63,7 @@ int main(int argc, char** argv)
 	LOG("*-Window Initialized-*");
 
 	// load scene 
-	auto scene = std::make_unique<neu::Scene>();
-
-	rapidjson::Document document;
-	bool success = neu::json::Load("scenes/basic.scn", document);
-	if (!success)
-	{
-		LOG("error loading scene file %s.", "scenes/basic.scn");
-	}
-	else
-	{
-		scene->Read(document);
-		scene->Initialize();
-	}
+	auto scene = neu::g_resources.Get<neu::Scene>("Scenes/basic.scn");
 
 	// create vertex buffer
 	GLuint vbo = 0;
@@ -87,22 +75,22 @@ int main(int argc, char** argv)
 	std::shared_ptr<neu::VertexBuffer> vb = neu::g_resources.Get<neu::VertexBuffer>("box");
 	vb->CreateVertexBuffer(sizeof(vertices), 36, vertices);
 	vb->SetAttribute(0, 3, 8 * sizeof(float), 0);
-	vb->SetAttribute(1, 3, 8 * sizeof(float), 3 * sizeof(float));
-	vb->SetAttribute(2, 3, 8 * sizeof(float), 6 * sizeof(float));
+	//vb->SetAttribute(1, 3, 8 * sizeof(float), 3 * sizeof(float));
+	vb->SetAttribute(1, 3, 8 * sizeof(float), 6 * sizeof(float));
 
 	// create program
 	//std::shared_ptr<neu::Program> program = neu::g_resources.Get<neu::Program>("Shaders/basic.prog", GL_PROGRAM);
 	//program->Link();
 	//program->Use();
 
-	auto m = neu::g_resources.Get<neu::Model>("Models/spot.obj");
+	//auto m = neu::g_resources.Get<neu::Model>("Models/spot.obj");
 	
 	// create material 
-	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("Materials/spot.mtrl");
-	material->Bind();
+	/*std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("Materials/spot.mtrl");
+	material->Bind();*/
 
 	//material->GetProgram()->SetUniform("tint", glm::vec3(1, 0, 0));
-	material->GetProgram()->SetUniform("scale", 0.5f);
+	//material->GetProgram()->SetUniform("scale", 0.5f);
 
 	glm::mat4 model { 1 };
 	glm::mat4 projection = glm::perspective(45.0f, (neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight()), 0.01f, 100.0f);
@@ -110,11 +98,11 @@ int main(int argc, char** argv)
 	float speed = 3;
 
 
-	std::vector<neu::Transform> transforms;
+	/*std::vector<neu::Transform> transforms;
 	for (int i = 0; i<1; i++)
 	{
 		transforms.push_back({ {neu::randomf(-10,10), neu::randomf(-10,10), neu::randomf(-10,10)}, {neu::randomf(90), neu::randomf(90), neu::randomf(90)} });
-	}
+	}*/
 
 	bool quit = false;
 	while (!quit)
@@ -147,18 +135,6 @@ int main(int argc, char** argv)
 		neu::g_renderer.BeginFrame();
 
 		scene->Draw(neu::g_renderer);
-
-		for (size_t i = 0; i < transforms.size();i++)
-		{
-			transforms[i].rotation += glm::vec3{ 0, 90 * neu::g_time.deltaTime,0 };
-
-			glm::mat4 mvp = projection * view * (glm::mat4) transforms[i];
-			material->GetProgram()->SetUniform("mvp", mvp);
-
-			m->m_vertexBuffer.Draw();
-			//vb->Draw();
-		}
-
 
 		neu::g_renderer.EndFrame();
 	}

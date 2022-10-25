@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "Resource/Resource.h"
 #include <list>
 #include <memory>
 
@@ -10,7 +11,7 @@ namespace neu
 	class Renderer;
 	class Game;
 
-	class Scene : public GameObject, public ISerializable
+	class Scene : public GameObject, public ISerializable, public Resource
 	{
 	public:
 		Scene() = default;
@@ -23,6 +24,9 @@ namespace neu
 		void Initialize() override;
 		void Update() override;
 		void Draw(Renderer& renderer);
+
+		// Inherited via Resource
+		virtual bool Create(std::string name, ...) override;
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
@@ -44,6 +48,7 @@ namespace neu
 	private:
 		Game* m_game =nullptr;
 		std::list<std::unique_ptr<Actor>> m_actors;
+
 	};
 
 

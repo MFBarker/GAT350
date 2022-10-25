@@ -41,11 +41,11 @@ namespace neu
 		int GetWidth() { return m_width; }
 		int GetHeight() { return m_height; }
 
-		glm::mat4 GetView() { return m_view; }//C2334 error for no reason
-		void SetView(const glm::mat4 view) { m_view = view; }
+		glm::mat4 GetView() { return m_view; }
+		void SetView(const glm::mat4& view) { m_view = view; }
 		
-		glm::mat4 GetProjection() { return m_projection; }//C2334 error for no reason
-		void SetProjection(const glm::mat4 projection) { m_projection = projection; }
+		glm::mat4 GetProjection() { return m_projection; }
+		void SetProjection(const glm::mat4& projection) { m_projection = projection; }
 
 		friend class Text;
 		friend class Texture;
@@ -56,8 +56,8 @@ namespace neu
 
 		Color m_clearColor{ 0, 0, 0, 255 };
 
-		glm::mat4 m_view{ 1 };//C2334 + C2065 error for no reason
-		glm::mat4 m_projection{ 1 };//C2334 + C3646 + C2065 error for no reason
+		glm::mat4 m_view{ 1 };
+		glm::mat4 m_projection{ 1 };
 
 		SDL_Renderer* m_renderer = nullptr;
 		SDL_Window* m_window = nullptr;
