@@ -1,17 +1,7 @@
 { 
-    "program":"Shaders/basic.prog", 
+    "program":"Shaders/basic_lit.prog", 
     "texture":"Textures/spot.png", 
-    "ambient":[ 
-        1, 
-        1, 
-        1 
-    ], 
-    "diffuse":[ 
-        1, 
-        1, 
-        1 
-    ], 
-    "specular":[ 
+    "color":[ 
         1, 
         1, 
         1 

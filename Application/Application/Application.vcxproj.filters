@@ -56,5 +56,8 @@
     <None Include="..\..\Build\Assets\Shaders\basic_lit.vert">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Scenes\basic_lit.scn">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>

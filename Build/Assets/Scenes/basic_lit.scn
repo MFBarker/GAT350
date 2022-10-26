@@ -1,58 +1,80 @@
 {
-    "actors":[
+    "actors": [
         {
-            "type":"Actor",
-            "name":"Spot",
-            "transform":{
-                "position":[
+            "type": "Actor",
+            "name": "Spot",
+            "transform": {
+                "position": [
                     0,
                     0,
                     0
                 ],
-                "scale":[
+                "scale": [
                     1,
                     1,
                     1
                 ],
-                "rotation":[
+                "rotation": [
                     0,
                     180,
                     0
                 ]
             },
-            "components":[
+            "components": [
                 {
-                    "type":"ModelComponent",
-                    "model_name":"Models/spot.obj",
-                    "material_name":"Materials/spot.mtrl"
+                    "type": "ModelComponent",
+                    "model_name": "Models/spot.obj",
+                    "material_name": "Materials/spot.mtrl"
                 }
             ]
         },
         {
-            "type":"Actor",
-            "name":"Camera",
-            "transform":{
-                "position":[
+            "type": "Actor",
+            "name": "Light",
+            "transform": {
+                "position": [
+                    2,
+                    0,
+                    5
+
+                ]
+            },
+            "components": [
+                {
+                    "type": "LightComponent",
+                    "color": [
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Actor",
+            "name": "Camera",
+            "transform": {
+                "position": [
                     0,
                     0,
                     4
                 ],
-                "rotation":[
+                "rotation": [
                     0,
                     180,
                     0
                 ]
             },
-            "components":[
+            "components": [
                 {
-                    "type":"CameraComponent",
-                    "fov":45,
-                    "near":0.1,
-                    "far":100
+                    "type": "CameraComponent",
+                    "fov": 45,
+                    "near": 0.1,
+                    "far": 100
                 },
                 {
-                    "type":"CameraController",
-                    "speed":4
+                    "type": "CameraController",
+                    "speed": 4
                 }
             ]
         }
