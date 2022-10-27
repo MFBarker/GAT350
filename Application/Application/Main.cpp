@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 
 	glm::mat4 model { 1 };
 	glm::mat4 projection = glm::perspective(45.0f, (neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight()), 0.01f, 100.0f);
-	glm::vec3 cameraPosition = glm::vec3{ 0, 0, 2 };
+	glm::vec3 cameraPosition = glm::vec3{ 0, 0, 3 };
 	float speed = 3;
 
 	bool quit = false;

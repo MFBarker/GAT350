@@ -13,6 +13,10 @@ namespace neu
 		if (g_inputSystem.GetKeyState(key_up) == InputSystem::KeyState::Held) m_owner->m_transform.position.y += speed * g_time.deltaTime;
 
 		if (g_inputSystem.GetKeyState(key_down) == InputSystem::KeyState::Held) m_owner->m_transform.position.y -= speed * g_time.deltaTime;
+
+		//zoom in/out
+		if(g_inputSystem.GetKeyState(key_plus) == InputSystem::KeyState::Held) m_owner->m_transform.position.z -= speed * g_time.deltaTime;
+		if(g_inputSystem.GetKeyState(key_minus) == InputSystem::KeyState::Held) m_owner->m_transform.position.z += speed * g_time.deltaTime;
 	}
 
 	bool CameraController::Write(const rapidjson::Value& value) const
