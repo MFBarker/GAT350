@@ -22,6 +22,9 @@ namespace neu
 		glm::vec3 color;
 		float shininess = 0;
 
+		glm::vec2 uv_tiling = glm::vec2(1, 1);
+		glm::vec2 uv_offset = glm::vec2(0.2, 0.2);
+
 	private:
 		std::shared_ptr<Program> m_program;
 		std::vector<std::shared_ptr<Texture>> m_textures;
