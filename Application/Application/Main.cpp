@@ -38,11 +38,11 @@ int main(int argc, char** argv)
 		//glm::mat4 view = glm::lookAt(cameraPosition, glm::vec3{0,0,0},glm::vec3 {0,1,0});
 		glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
 
-		/*auto actor = scene->GetActorFromName("Spot");
+		auto actor = scene->GetActorFromName("Spot");
 		if (actor)
 		{
 			actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
-		}*/
+		}
 
 		/*auto material = neu::g_resources.Get<neu::Material>("Materials/multi.mtrl");
 		if (material)

@@ -23,7 +23,9 @@ struct Material
  
 uniform Light light;
 uniform Material material;
-uniform sampler2D texture1;
+
+layout (binding = 0) uniform sampler2D texture1;//diffuse map
+layout (binding = 1) uniform sampler2D texture2;//specular map
  
 void main()
 {
@@ -50,9 +52,12 @@ void main()
 		intensity = pow(intensity, material.shininess);
 		specular = light.color * material.color * intensity;
 	}
-	vec2 ttexcoord = (texcoord * material.uv_tiling + material.uv_offset);
+	vec2 ttexcoord = (texcoord * material.uv_tiling) + material.uv_offset;
+
+	vec4 texture_color = texture(texture1, ttexcoord);
+	//vec4 texture_color = mix(texture(texture1, ttexcoord), texture(texture2, ttexcoord),0.5);
 
 	//fcolor
-	fcolor = vec4(ambient + diffuse, 1) * texture(texture1, ttexcoord) + vec4(specular, 1);
+	fcolor = vec4(ambient + diffuse, 1) * texture_color + vec4(specular, 1) * texture(texture2,ttexcoord);
 
 }
