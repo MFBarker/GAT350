@@ -26,7 +26,7 @@ namespace neu
 		bool Load(const std::string& filename, Renderer& renderer);
 
 		void SetActive(GLuint unit) { glActiveTexture(unit); }
-		
+
 		void Bind() { glBindTexture(m_target, m_texture); }
 
 		Vector2 GetSize() const;

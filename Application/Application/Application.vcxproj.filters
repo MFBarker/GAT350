@@ -83,5 +83,17 @@
     <None Include="..\..\Build\Assets\Shaders\texture_phong.vert">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Shaders\normal_phong.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\normal_phong.prog">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\normal_phong.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\ogre.mtrl">
+      <Filter>Resource Files\Materials</Filter>
+    </None>
   </ItemGroup>
 </Project>

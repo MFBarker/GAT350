@@ -145,6 +145,7 @@
   <ItemGroup>
     <None Include="..\..\Build\Assets\Materials\box.mtrl" />
     <None Include="..\..\Build\Assets\Materials\multi.mtrl" />
+    <None Include="..\..\Build\Assets\Materials\ogre.mtrl" />
     <None Include="..\..\Build\Assets\Materials\spot.mtrl" />
     <None Include="..\..\Build\Assets\Scenes\basic.scn" />
     <None Include="..\..\Build\Assets\Scenes\basic_lit.scn" />
@@ -158,6 +159,9 @@
     <None Include="..\..\Build\Assets\Shaders\basic_phong.frag" />
     <None Include="..\..\Build\Assets\Shaders\basic_phong.prog" />
     <None Include="..\..\Build\Assets\Shaders\basic_phong.vert" />
+    <None Include="..\..\Build\Assets\Shaders\normal_phong.frag" />
+    <None Include="..\..\Build\Assets\Shaders\normal_phong.prog" />
+    <None Include="..\..\Build\Assets\Shaders\normal_phong.vert" />
     <None Include="..\..\Build\Assets\Shaders\texture_phong.frag" />
     <None Include="..\..\Build\Assets\Shaders\texture_phong.prog" />
     <None Include="..\..\Build\Assets\Shaders\texture_phong.vert" />

@@ -1,8 +1,9 @@
 { 
     "program":"Shaders/texture_phong.prog",
     "textures": [
-        "Textures/crate.bmp",
-        "Textures/crate_specular.bmp"
+        "Textures/lava-diffuse.png",
+        "Textures/lava-specular.png",
+        "Textures/lava-emissive.png"
     ],
     "uv_tiling":  [1, 1],
     "uv_offset":  [0, 0],

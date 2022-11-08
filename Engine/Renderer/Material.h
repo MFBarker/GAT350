@@ -23,7 +23,7 @@ namespace neu
 		float shininess = 0;
 
 		glm::vec2 uv_tiling = glm::vec2(1, 1);
-		glm::vec2 uv_offset = glm::vec2(0.2, 0.2);
+		glm::vec2 uv_offset = glm::vec2(0, 0);
 
 	private:
 		std::shared_ptr<Program> m_program;
