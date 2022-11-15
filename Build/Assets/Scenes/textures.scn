@@ -23,8 +23,8 @@
             "components": [
                 {
                     "type": "ModelComponent",
-                    "model_name": "Models/ogre.obj",
-                    "material_name": "Materials/ogre.mtrl"
+                    "model_name": "Models/squirrel.glb",
+                    "material_name": "Materials/squirrel.mtrl"
                 }
             ]
         },
@@ -33,10 +33,15 @@
             "name": "Light",
             "transform": {
                 "position": [
-                    2,
+                    200,
                     0,
                     5
 
+                ],
+                "rotation": [
+                    85,
+                    0,
+                    0
                 ]
             },
             "components": [
@@ -46,7 +51,10 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "type_name": "point",
+                    "cutoff": 45.0,
+                    "exponent": 50.0
                 }
             ]
         },
@@ -56,8 +64,8 @@
             "transform": {
                 "position": [
                     0,
-                    0,
-                    4
+                    2,
+                    9
                 ],
                 "rotation": [
                     0,

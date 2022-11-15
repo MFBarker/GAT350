@@ -15,6 +15,7 @@ int main(int argc, char** argv)
 	LOG("*-Engine Initialized-*");
 
 	neu::g_renderer.CreateWindow("Neumont", 800, 600);
+	neu::g_gui.Initialize(neu::g_renderer);
 
 	LOG("*-Window Initialized-*");
 
@@ -28,10 +29,13 @@ int main(int argc, char** argv)
 	glm::vec3 cameraPosition = glm::vec3{ 0, 0, 3 };
 	float speed = 3;
 
+	glm::vec3 pos = {0,0,0};
+
 	bool quit = false;
 	while (!quit)
 	{
 		neu::Engine::Instance().Update();
+		neu::g_gui.BeginFrame(neu::g_renderer);
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Pressed) quit = true;
 
@@ -41,22 +45,35 @@ int main(int argc, char** argv)
 		auto actor = scene->GetActorFromName("Spot");
 		if (actor)
 		{
-			actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
+			//actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
 		}
 
-		/*auto material = neu::g_resources.Get<neu::Material>("Materials/multi.mtrl");
-		if (material)
+		actor = scene->GetActorFromName("Light");
+		if (actor)
 		{
-			material->uv_offset.x += neu::g_time.deltaTime;
-		}*/
+			// move light using sin wave
+			actor->m_transform.position = pos;
+		}
+
+		ImGui::Begin("Hello!");
+
+		ImGui::Button("Press Me!");
+		ImGui::SliderFloat("X", &pos[0], -5.0f, 5.0f);
+		ImGui::SliderFloat("Y", &pos[1], -5.0f, 5.0f);
+		ImGui::SliderFloat("Z", &pos[2], -5.0f, 5.0f);
+
+
+		ImGui::End();
 
 		scene->Update();
 
 		neu::g_renderer.BeginFrame();
 
 		scene->Draw(neu::g_renderer);
+		neu::g_gui.Draw();
 
 		neu::g_renderer.EndFrame();
+		neu::g_gui.EndFrame();
 	}
 	scene->RemoveAll();
 	neu::Engine::Instance().Shutdown();
