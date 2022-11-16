@@ -3,6 +3,7 @@
 
 namespace neu
 {
+
 	class CameraController : public Component
 	{
 	public:
@@ -12,7 +13,6 @@ namespace neu
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
-
 	private:
 		float speed = 0;
 	};

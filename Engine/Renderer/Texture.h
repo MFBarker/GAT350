@@ -31,6 +31,8 @@ namespace neu
 
 		Vector2 GetSize() const;
 
+		static GLenum GetInternalFormat(GLuint format);
+
 		friend class Renderer;
 
 	private:

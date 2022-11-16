@@ -1,26 +1,25 @@
 #version 430 core
-
+ 
 #define POINT		0
 #define DIRECTIONAL	1
 #define SPOTLIGHT	2
 #define MAX_LIGHTS	5
-
-in vec3 position;
-in vec2 texcoord;
-in mat3 tbn;
  
-out vec4 fcolor;
-
+in vec3 position;
+in vec3 normal;
+in vec2 texcoord;
+ 
+out vec4 fcolor; // pixel to draw
+ 
 uniform struct Light
 {
 	int type; 
-	vec3 ambient;
 	vec3 color;
 	vec4 position;
 	vec3 direction;
 	float cutoff;
 	float exponent;
-} light[MAX_LIGHTS];
+} lights[MAX_LIGHTS];
  
 uniform struct Material
 {
@@ -29,14 +28,14 @@ uniform struct Material
 	vec2 uv_tiling;
 	vec2 uv_offset;
 } material;
-
+ 
 uniform int light_count;
 uniform vec3 ambient_color;
-
+ 
 layout (binding = 0) uniform sampler2D diffuseMap;
-layout (binding = 1) uniform sampler2D normalMap;
-
-void phong (Light light, vec3 position, vec3 normal, out vec3 diffuse, out vec3 specular)
+ 
+ 
+void phong(Light light, vec3 position, vec3 normal, out vec3 diffuse, out vec3 specular)
 {
 	// direction vector to light
 	// calculate light direction (unit vector)
@@ -54,7 +53,6 @@ void phong (Light light, vec3 position, vec3 normal, out vec3 diffuse, out vec3 
 		// if inside of cutoff, set spot intensity
 		spot_intensity = (angle < light.cutoff) ? pow(cosine, light.exponent) : 0;
 	}
- 
  
 	// DIFFUSE
 	// calculate light intensity with dot product (normal * light direction)
@@ -82,12 +80,6 @@ void phong (Light light, vec3 position, vec3 normal, out vec3 diffuse, out vec3 
  
 void main()
 {
-	vec2 ttexcoord = (texcoord * material.uv_tiling) + material.uv_offset;
-
-	vec3 normal = texture(normalMap, ttexcoord).rgb;
-	normal = (normal * 2) - 1;
-	normal = normalize(tbn * normal);
-
 	// initialize fragment color with ambient color
 	fcolor = vec4(ambient_color, 1) * texture(diffuseMap, texcoord);
  
@@ -97,8 +89,7 @@ void main()
 		vec3 diffuse;
 		vec3 specular;
  
-		phong(light[i], position, normal, diffuse, specular);
+		phong(lights[i], position, normal, diffuse, specular);
 		fcolor += (vec4(diffuse, 1) * texture(diffuseMap, texcoord)) + vec4(specular, 1);
 	}
-
 }

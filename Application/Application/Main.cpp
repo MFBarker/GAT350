@@ -69,7 +69,9 @@ int main(int argc, char** argv)
 
 		neu::g_renderer.BeginFrame();
 
-		scene->Draw(neu::g_renderer);
+		scene->PreRender(neu::g_renderer);
+		scene->Render(neu::g_renderer);
+
 		neu::g_gui.Draw();
 
 		neu::g_renderer.EndFrame();

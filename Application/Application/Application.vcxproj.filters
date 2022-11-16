@@ -95,24 +95,6 @@
     <None Include="..\..\Build\Assets\Shaders\basic_phong.vert">
       <Filter>Resource Files\Shaders\basic_phong</Filter>
     </None>
-    <None Include="..\..\Build\Assets\Shaders\lit\texture.frag">
-      <Filter>Resource Files\Shaders\LIT</Filter>
-    </None>
-    <None Include="..\..\Build\Assets\Shaders\lit\texture.prog">
-      <Filter>Resource Files\Shaders\LIT</Filter>
-    </None>
-    <None Include="..\..\Build\Assets\Shaders\lit\texture.vert">
-      <Filter>Resource Files\Shaders\LIT</Filter>
-    </None>
-    <None Include="..\..\Build\Assets\Shaders\lit\texture_normal.frag">
-      <Filter>Resource Files\Shaders\LIT</Filter>
-    </None>
-    <None Include="..\..\Build\Assets\Shaders\lit\texture_normal.prog">
-      <Filter>Resource Files\Shaders\LIT</Filter>
-    </None>
-    <None Include="..\..\Build\Assets\Shaders\lit\texture_normal.vert">
-      <Filter>Resource Files\Shaders\LIT</Filter>
-    </None>
     <None Include="..\..\Build\Assets\Shaders\unlit\color.frag">
       <Filter>Resource Files\Shaders\UNLIT</Filter>
     </None>
@@ -142,6 +124,24 @@
     </None>
     <None Include="..\..\Build\Assets\Shaders\FX\toon.frag">
       <Filter>Resource Files\Shaders\FX</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit\texture.frag">
+      <Filter>Resource Files\Shaders\LIT</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit\texture.prog">
+      <Filter>Resource Files\Shaders\LIT</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit\texture.vert">
+      <Filter>Resource Files\Shaders\LIT</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit\texture_normal.frag">
+      <Filter>Resource Files\Shaders\LIT</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit\texture_normal.prog">
+      <Filter>Resource Files\Shaders\LIT</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit\texture_normal.vert">
+      <Filter>Resource Files\Shaders\LIT</Filter>
     </None>
   </ItemGroup>
 </Project>

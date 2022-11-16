@@ -28,7 +28,56 @@ namespace neu
 		}
 	}
 
-	void Scene::Draw(Renderer& renderer)
+	void Scene::PreRender(Renderer& renderer)
+	{
+		// get active camera component 
+		CameraComponent* camera = nullptr;
+		for (auto& actor : m_actors)
+		{
+			if (actor->active == false) continue;
+
+			auto component = actor->GetComponent<CameraComponent>();
+			if (component != NULL)
+			{
+				camera = component;
+				break;
+			}
+		}
+
+		// get light components 
+		std::vector<LightComponent*> lights;
+		for (auto& actor : m_actors)
+		{
+			if (actor->active == false) continue;
+
+			auto component = actor->GetComponent<LightComponent>();
+			if (component != NULL)
+			{
+				lights.push_back(component);
+			}
+		}
+
+		// get all shader programs in the resource system 
+		auto programs = g_resources.Get<Program>();
+		// set all shader programs camera and lights uniforms 
+		for (auto& program : programs)
+		{
+			// set camera in shader program 
+			camera->SetProgram(program);
+
+			// set lights in shader program 
+			int index = 0;
+			for (auto light : lights)
+			{
+				light->SetProgram(program, index++);
+			}
+
+			program->SetUniform("light_count", index);
+			program->SetUniform("ambient_color", g_renderer.ambient_color);
+		}
+	}
+
+	void Scene::Render(Renderer& renderer)
 	{
 		// get camera / set renderer view/projection 
 		auto camera = GetActorFromName("Camera");
@@ -82,6 +131,10 @@ namespace neu
 
 	bool Scene::Read(const rapidjson::Value& value)
 	{
+		// read clear color 
+		READ_NAME_DATA(value, "clear_color", g_renderer.clear_color);
+		READ_NAME_DATA(value, "ambient_color", g_renderer.ambient_color);
+
 		if (!value.HasMember("actors") || !value["actors"].IsArray())
 		{
 			return false;
