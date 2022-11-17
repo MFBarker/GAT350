@@ -143,5 +143,11 @@
     <None Include="..\..\Build\Assets\Shaders\lit\texture_normal.vert">
       <Filter>Resource Files\Shaders\LIT</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Scenes\cubemap.scn">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\skybox.mtrl">
+      <Filter>Resource Files\Materials</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -20,9 +20,7 @@ int main(int argc, char** argv)
 	LOG("*-Window Initialized-*");
 
 	// load scene 
-	auto scene = neu::g_resources.Get<neu::Scene>("Scenes/textures.scn");
-
-
+	auto scene = neu::g_resources.Get<neu::Scene>("Scenes/cubemap.scn");
 
 	glm::mat4 model { 1 };
 	glm::mat4 projection = glm::perspective(45.0f, (neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight()), 0.01f, 100.0f);
@@ -30,6 +28,8 @@ int main(int argc, char** argv)
 	float speed = 3;
 
 	glm::vec3 pos = {0,0,0};
+
+	glm::vec3 rot{ 0,0,0 };
 
 	bool quit = false;
 	while (!quit)
@@ -42,10 +42,10 @@ int main(int argc, char** argv)
 		//glm::mat4 view = glm::lookAt(cameraPosition, glm::vec3{0,0,0},glm::vec3 {0,1,0});
 		glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
 
-		auto actor = scene->GetActorFromName("Spot");
+		auto actor = scene->GetActorFromName("Model");
 		if (actor)
 		{
-			//actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
+			actor->m_transform.rotation = math::EulerToQuaternion(rot);
 		}
 
 		actor = scene->GetActorFromName("Light");

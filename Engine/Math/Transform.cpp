@@ -9,7 +9,11 @@ bool neu::Transform::Read(const rapidjson::Value& value)
 {
     READ_DATA(value, position);
     READ_DATA(value, scale);
-    READ_DATA(value, rotation);
+    
+    glm::vec3 euler;
+    READ_NAME_DATA(value, "rotation", euler);
+    rotation = euler;
+    glm::vec3 v = math::QuaternionToEuler(rotation);
 
     return true;
 }
