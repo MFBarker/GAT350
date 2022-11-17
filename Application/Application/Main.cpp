@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 	float speed = 3;
 
 	glm::vec3 pos = {0,0,0};
-
+	float ri = 1.0f;
 	glm::vec3 rot{ 0,0,0 };
 
 	bool quit = false;
@@ -55,13 +55,18 @@ int main(int argc, char** argv)
 			actor->m_transform.position = pos;
 		}
 
+		auto program = neu::g_resources.Get<neu::Program>("shaders/fx/refraction.prog");
+		if (program)
+		{
+			program->Use();
+			program->SetUniform("ri", ri);
+		}
+
 		ImGui::Begin("Hello!");
 
 		ImGui::Button("Press Me!");
-		ImGui::SliderFloat("X", &pos[0], -5.0f, 5.0f);
-		ImGui::SliderFloat("Y", &pos[1], -5.0f, 5.0f);
-		ImGui::SliderFloat("Z", &pos[2], -5.0f, 5.0f);
-
+		ImGui::DragFloat3("Rotation", &rot[0]);
+		ImGui::DragFloat3("Refraction", &ri, 0.01f, 1, 3);
 
 		ImGui::End();
 
