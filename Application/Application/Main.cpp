@@ -19,8 +19,16 @@ int main(int argc, char** argv)
 
 	LOG("*-Window Initialized-*");
 
+	// create framebuffer texture
+	auto texture = std::make_shared<neu::Texture>();
+	texture->CreateTexture(512, 512);
+	neu::g_resources.Add<neu::Texture>("fb_texture", texture);
+
+	//create framebuffer
+	auto framebuffer = neu::g_resources.Get<neu::Framebuffer>("framebuffer", "fb_texture");
+
 	// load scene 
-	auto scene = neu::g_resources.Get<neu::Scene>("Scenes/cubemap.scn");
+	auto scene = neu::g_resources.Get<neu::Scene>("Scenes/rtt.scn");
 
 	glm::mat4 model { 1 };
 	glm::mat4 projection = glm::perspective(45.0f, (neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight()), 0.01f, 100.0f);
@@ -72,7 +80,35 @@ int main(int argc, char** argv)
 
 		scene->Update();
 
+		{
+			auto actor = scene->GetActorFromName("RTT");
+			if (actor)
+			{
+				actor->SetActive(false);
+			}
+		}
+
+		// render pass 1
+		glViewport(0, 0, 512, 512);
+		framebuffer->Bind();
+
 		neu::g_renderer.BeginFrame();
+
+		scene->PreRender(neu::g_renderer);
+		scene->Render(neu::g_renderer);
+
+		framebuffer->Unbind();
+
+		{
+			auto actor = scene->GetActorFromName("RTT");
+			if (actor)
+			{
+				actor->SetActive(true);
+			}
+		}
+
+		// render bind 2
+		glViewport(0, 0, 800, 600);
 
 		scene->PreRender(neu::g_renderer);
 		scene->Render(neu::g_renderer);

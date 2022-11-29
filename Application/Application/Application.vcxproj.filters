@@ -179,5 +179,11 @@
     <None Include="..\..\Build\Assets\Shaders\FX\refraction.frag">
       <Filter>Resource Files\Shaders\FX</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Scenes\rtt.scn">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\rtt.mtrl">
+      <Filter>Resource Files\Materials</Filter>
+    </None>
   </ItemGroup>
 </Project>
